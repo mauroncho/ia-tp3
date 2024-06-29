@@ -1,8 +1,11 @@
+const player = new Player();
+
 function setup() {
   createCanvas(600, 600, game);
-  background("red");
+  rectMode(CENTER);
 }
 
 function draw() {
-  // put drawing code here
+  background(0);
+  player.update();
 }
