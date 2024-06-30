@@ -4,6 +4,7 @@ class Player {
     this.y = 550;
     this.width = 50;
     this.height = 50;
+    this.vel = 5;
   }
 
   draw() {
@@ -15,10 +16,10 @@ class Player {
 
   move() {
     if (keyIsDown(RIGHT_ARROW)) {
-      this.x += 5;
+      this.x += this.vel;
     }
     if (keyIsDown(LEFT_ARROW)) {
-      this.x -= 5;
+      this.x -= this.vel;
     }
   }
 
