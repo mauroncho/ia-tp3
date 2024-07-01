@@ -23,14 +23,6 @@ class Player {
       this.x -= this.vel;
     }
   }
-  // move() {
-  //   if (keyIsDown(RIGHT_ARROW)) {
-  //     this.x = constrain(this.x + this.vel, 0, width - this.width / 2); // Limita la posición x a dentro del canvas
-  //   }
-  //   if (keyIsDown(LEFT_ARROW)) {
-  //     this.x = constrain(this.x - this.vel, 0, width + this.width); // Limita la posición x a dentro del canvas
-  //   }
-  // }
 
   update() {
     this.draw();
