@@ -18,6 +18,10 @@ class Opponent {
     this.y += this.vel;
   }
 
+  floorCollision() {
+    return this.y + this.height / 2 > 600;
+  }
+
   update() {
     this.draw();
     this.move();
