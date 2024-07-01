@@ -1,9 +1,9 @@
 class Opponent {
-  constructor(x, y, width, height, vel) {
+  constructor(x, vel) {
     this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
+    this.y = 0;
+    this.width = 50;
+    this.height = 50;
     this.vel = vel;
   }
 

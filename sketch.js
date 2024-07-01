@@ -1,25 +1,27 @@
 const player = new Player();
-let opponents = [];
+let coins = [];
 
 function setup() {
   createCanvas(600, 600, game);
   rectMode(CENTER);
-  opponents.push(new Opponent(300, 100, 50, 50, 5));
 }
 
 function draw() {
   background(0);
   player.update();
   //manejo de oponentes
-  for (let i = 0; i < opponents.length; i++) {
-    opponents[i].update();
-    if (isColliding(player, opponents[i])) {
+  if (frameCount % 75 == 0) {
+    coins.push(new Opponent(random(30, 570), random(2, 5)));
+  }
+  for (let i = 0; i < coins.length; i++) {
+    coins[i].update();
+    if (isColliding(player, coins[i])) {
       console.log("hit");
       // console.log(this.y);
     }
 
-    if (opponents[i].floorCollision()) {
-      opponents.splice(i, 1);
+    if (coins[i].floorCollision()) {
+      coins.splice(i, 1);
     }
   }
 }
