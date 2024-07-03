@@ -34,12 +34,23 @@ function draw() {
   }
 }
 
+function mousePressed() {}
+
 function isColliding(player, opponent) {
   return !(
     player.x - player.width / 2 > opponent.x + opponent.width / 2 ||
     player.x + player.width / 2 < opponent.x - opponent.width / 2 ||
     player.y - player.height / 2 > opponent.y + opponent.height / 2 ||
     player.y + player.height / 2 < opponent.y - opponent.height / 2
+  );
+}
+
+function hover(x, y, width, height) {
+  return (
+    x + width / 2 < mouseX ||
+    x - width / 2 > mouseX ||
+    y + height / 2 > mouseY ||
+    y + height / 2 < mouseY
   );
 }
 
