@@ -34,8 +34,3 @@ function isColliding(player, opponent) {
     player.y + player.height / 2 < opponent.y - opponent.height / 2
   );
 }
-
-function nextScreen() {
-  console.log("next");
-  screen++;
-}
