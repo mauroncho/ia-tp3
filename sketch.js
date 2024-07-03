@@ -26,6 +26,8 @@ function draw() {
   }
 }
 
+function mousePressed() {}
+
 function isColliding(player, opponent) {
   return !(
     player.x - player.width / 2 > opponent.x + opponent.width / 2 ||
@@ -33,4 +35,9 @@ function isColliding(player, opponent) {
     player.y - player.height / 2 > opponent.y + opponent.height / 2 ||
     player.y + player.height / 2 < opponent.y - opponent.height / 2
   );
+}
+
+function nextScreen() {
+  console.log("next");
+  screen++;
 }
