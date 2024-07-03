@@ -26,8 +26,6 @@ function draw() {
   }
 }
 
-function mousePressed() {}
-
 function isColliding(player, opponent) {
   return !(
     player.x - player.width / 2 > opponent.x + opponent.width / 2 ||
