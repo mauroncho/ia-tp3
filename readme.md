@@ -1,5 +1,2 @@
-#consultas
-representar mejor el boton
-representar mejor el score
-como usar imports/exports
-representaciones graficas y sonoras de estados
+#Trabajo práctico Nº3 - Informática aplicada I - UNA
+##Realizado por Yanina Longo y Mauro Giachero
