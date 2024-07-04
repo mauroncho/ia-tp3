@@ -1,23 +1,7 @@
+//pantalla de inicio
 function gameIndex() {
-  const prueba = new CustomText(100, 100, "hola", 100);
-  prueba.update();
-
-  push();
-  fill(50);
-  if (!hover(width / 2, height / 2, 160, 70)) {
-    stroke("red");
-    strokeWeight(5);
-  } else {
-    noStroke();
-  }
-  rect(width / 2, height / 2, 160, 70);
-  pop();
-  push();
-  fill(255);
-  textAlign(CENTER, CENTER);
-  textSize(50);
-  text("Jugar", width / 2, height / 2);
-  pop();
+  const playButton = new CustomText(width / 2, height / 2, "Jugar", 60);
+  playButton.update();
 }
 
 function mousePressed() {
@@ -34,5 +18,30 @@ function hover(x, y, width, height) {
     y - height / 2 > mouseY
   );
 }
+//pantalla de juego
+function playScreen() {
+  const scoreText = new CustomText(
+    width * 0.17,
+    height * 0.09,
+    `Score: ${score}`,
+    30,
+    false
+  );
+  player.update();
+  //manejo de oponentes
+  if (frameCount % 60 == 0) {
+    coins.push(new Opponent(random(30, 570), random(3, 6)));
+  }
+  for (let i = 0; i < coins.length; i++) {
+    coins[i].update();
+    if (isColliding(player, coins[i])) {
+      coins.splice(i, 1);
+      score += 5;
+    }
 
-function playScreen() {}
+    if (coins[i].floorCollision()) {
+      coins.splice(i, 1);
+    }
+  }
+  scoreText.update();
+}
