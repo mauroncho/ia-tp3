@@ -32,14 +32,13 @@ function playScreen() {
   if (frameCount % 60 == 0) {
     coins.push(new Opponent(random(30, 570), random(3, 6)));
   }
-  for (let i = 0; i < coins.length; i++) {
+  //for loop "inverso" (con i--) para evitar el flickering que generan los elementos no procesados
+  for (let i = coins.length - 1; i >= 0; i--) {
     coins[i].update();
     if (isColliding(player, coins[i])) {
       coins.splice(i, 1);
       score += 5;
-    }
-
-    if (coins[i].floorCollision()) {
+    } else if (coins[i].floorCollision()) {
       coins.splice(i, 1);
     }
   }
