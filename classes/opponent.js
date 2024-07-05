@@ -1,15 +1,16 @@
 class Opponent {
-  constructor(x, vel) {
+  constructor(x, vel, fill) {
     this.x = x;
     this.y = 0;
     this.width = 50;
     this.height = 50;
+    this.fill = fill;
     this.vel = vel;
   }
 
   draw() {
     push();
-    fill(255, 255, 0);
+    fill(this.fill);
     rect(this.x, this.y, this.width, this.height);
     pop();
   }

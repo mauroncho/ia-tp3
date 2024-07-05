@@ -5,13 +5,18 @@ class Player {
     this.width = 50;
     this.height = 50;
     this.vel = 5;
+    this.life = 3;
   }
 
   draw() {
     push();
-    fill("red");
+    fill("yellow");
     rect(this.x, this.y, this.width, this.height);
     pop();
+  }
+
+  receiveDamage() {
+    this.life--;
   }
 
   move() {

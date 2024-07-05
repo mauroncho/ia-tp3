@@ -19,8 +19,8 @@ class CustomText {
         noStroke();
       }
       fill(50);
-      rect(this.x - this.size - 50, this.y, 20);
-      rect(this.x + this.size + 50, this.y, 20);
+      rect(this.x - this.size - 70, this.y, 20);
+      rect(this.x + this.size + 70, this.y, 20);
       pop();
     }
 
