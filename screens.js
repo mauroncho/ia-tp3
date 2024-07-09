@@ -1,9 +1,10 @@
-//pantalla de inicio
+//PANTALLA INICIO
 function gameIndex() {
   const playButton = new CustomText(width / 2, height / 2, "Jugar", 60);
   playButton.update();
+  bgImg();
 }
-
+//funcionalidades de la pantalla inicio
 function mousePressed() {
   if (!hover(width / 2, height / 2, 160, 70)) {
     gameScreen = 2;
@@ -19,7 +20,7 @@ function hover(x, y, width, height) {
   );
 }
 
-//pantalla de juego
+//PANTALLA JUEGO
 function playScreen() {
   const scoreText = new CustomText(
     width * 0.17,
@@ -28,6 +29,7 @@ function playScreen() {
     30,
     false
   );
+  bgImg();
   player.update();
   //manejo de oponentes
   if (frameCount % 60 == 0) {
@@ -59,4 +61,14 @@ function playScreen() {
     }
   }
   scoreText.update();
+}
+
+//cargar imagen
+function bgImg() {
+  image(bg, 430, 70, 64, 64, 32 * 3, 0, 32, 32);
+  for (let x = 0; x < width; x++) {
+    image(bg, 0 + x * 64, height - 64, 64, 64, 32, 0, 32, 32);
+  }
+
+  // console.log(bg.height);
 }

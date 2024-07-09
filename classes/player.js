@@ -1,17 +1,19 @@
 class Player {
-  constructor() {
+  constructor(sheet) {
     this.x = 300;
-    this.y = 550;
-    this.width = 50;
-    this.height = 50;
+    this.y = 600 - 125;
+    this.width = 42;
+    this.height = 64;
     this.vel = 5;
     this.life = 3;
+    this.sheet = sheet;
   }
 
   draw() {
     push();
-    fill("yellow");
-    rect(this.x, this.y, this.width, this.height);
+    // fill("yellow");
+    // rect(this.x, this.y, this.width, this.height);
+    image(this.sheet, this.x, this.y, this.width, this.height, 0, 32, 24, 32);
     pop();
   }
 

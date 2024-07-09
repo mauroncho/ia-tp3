@@ -1,28 +1,32 @@
-const player = new Player();
+let font1;
+let font2;
+let font3;
+let font4;
+let bg;
+let playerSheet;
+let player;
+function preload() {
+  font1 = loadFont("./assets/fonts/slkscr.ttf");
+  // font2 = loadFont("./assets/slkscrb.ttf");
+  // font3 = loadFont("./assets/slkscre.ttf");
+  // font4 = loadFont("./assets/slkscreb.ttf");
+  bg = loadImage("./assets/img/bg.png");
+  playerSheet = loadImage("./assets/img/player-cut.png");
+}
 let coins = [];
 let opponents = [];
 let gameScreen = 1;
 let score = 0;
 
-let font1;
-let font2;
-let font3;
-let font4;
-function preload() {
-  font1 = loadFont("./assets/slkscr.ttf");
-  font2 = loadFont("./assets/slkscrb.ttf");
-  font3 = loadFont("./assets/slkscre.ttf");
-  font4 = loadFont("./assets/slkscreb.ttf");
-}
-
 function setup() {
   createCanvas(600, 600, game);
   textFont(font1);
   rectMode(CENTER);
+  player = new Player(playerSheet);
 }
 
 function draw() {
-  background(0);
+  background("#2b425d");
   if (gameScreen == 1) {
     gameIndex();
   } else if (gameScreen == 2) {
