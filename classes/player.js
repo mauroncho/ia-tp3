@@ -18,6 +18,11 @@ class Player {
 
   receiveDamage() {
     this.life--;
+    // console.log(this.life);
+    if (this.life == 0) {
+      this.life = 3;
+      return true;
+    }
   }
 
   move() {

@@ -5,8 +5,7 @@ Se utiliza la librería p5.js y se trabaja una introducción a los estados y la 
 Funcionalidades a agregar:
 
 - Win condition (todavía no la tenemos pensada)
-- Vidas del jugador (Lose condition (?))
-- Pantalla Game Over
-- Pantalla Créditos
-- Gráficos del juego
-- Mejorar detalles de la lógica
+- Vidas del jugador (Lose condition (?)): agregar visualización a la pantalla de juego
+- Gráficos del juego: agregar animaciones del personaje, gráficos para elementos que sumen puntos y también para enemigos
+- Mejorar detalles de la lógica: hover del menú principal, dibujo del background
+- Mejorar HTML, buscar nombre al juego

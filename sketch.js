@@ -6,14 +6,16 @@ let bg;
 let playerSheet;
 let player;
 let playerRun;
+let playerIdle;
 function preload() {
   font1 = loadFont("./assets/fonts/slkscr.ttf");
   // font2 = loadFont("./assets/slkscrb.ttf");
   // font3 = loadFont("./assets/slkscre.ttf");
   // font4 = loadFont("./assets/slkscreb.ttf");
+  playerIdle = loadImage("./assets/img/idle.png");
   playerRun = loadImage("./assets/img/run.png");
   bg = loadImage("./assets/img/bg.png");
-  playerSheet = loadImage("./assets/img/player-cut.png");
+  // playerSheet = loadImage("./assets/img/player-cut.png");
 }
 let coins = [];
 let opponents = [];
@@ -24,7 +26,7 @@ function setup() {
   createCanvas(600, 600, game);
   textFont(font1);
   rectMode(CENTER);
-  player = new Player(playerSheet);
+  player = new Player(playerRun);
 }
 
 function draw() {
@@ -33,6 +35,10 @@ function draw() {
     gameIndex();
   } else if (gameScreen == 2) {
     playScreen();
+  } else if (gameScreen == 3) {
+    gameOverScreen();
+  } else if (gameScreen == 4) {
+    creditsScreen();
   } else {
     console.log("fin");
   }
