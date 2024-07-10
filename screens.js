@@ -3,6 +3,7 @@ function gameIndex() {
   const playButton = new CustomText(width / 2, height / 2, "Jugar", 60);
   playButton.update();
   bgImg();
+  spriteSheet(playerRun, 0, 0, 128, 128, 0, 0, 128, 128, 5, 7);
 }
 //funcionalidades de la pantalla inicio
 function mousePressed() {
@@ -71,4 +72,25 @@ function bgImg() {
   }
 
   // console.log(bg.height);
+}
+//en la funcion image "d" significa destination y "s", source
+//image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight])
+let counter = 0;
+function spriteSheet(
+  sheet,
+  dx,
+  dy,
+  dw,
+  dh,
+  sx,
+  sy,
+  sw,
+  sh,
+  animationSpeed,
+  frameNumber
+) {
+  image(sheet, dx, dy, dw, dh, sx + sw * counter, sy, sw, sh);
+  if (frameCount % animationSpeed == 0)
+    counter < frameNumber ? counter++ : (counter = 0);
+  // console.log(counter);
 }
