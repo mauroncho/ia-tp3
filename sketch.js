@@ -1,21 +1,16 @@
 let font1;
-let font2;
-let font3;
-let font4;
 let bg;
-let playerSheet;
-let player;
 let playerRun;
 let playerIdle;
+let playerDead;
+let playerHurt;
 function preload() {
   font1 = loadFont("./assets/fonts/slkscr.ttf");
-  // font2 = loadFont("./assets/slkscrb.ttf");
-  // font3 = loadFont("./assets/slkscre.ttf");
-  // font4 = loadFont("./assets/slkscreb.ttf");
+  bg = loadImage("./assets/img/bg.png");
   playerIdle = loadImage("./assets/img/idle.png");
   playerRun = loadImage("./assets/img/run.png");
-  bg = loadImage("./assets/img/bg.png");
-  // playerSheet = loadImage("./assets/img/player-cut.png");
+  playerDead = loadImage("./assets/img/dead.png");
+  playerHurt = loadImage("./assets/img/hurt.png");
 }
 let coins = [];
 let opponents = [];
@@ -26,7 +21,7 @@ function setup() {
   createCanvas(600, 600, game);
   textFont(font1);
   rectMode(CENTER);
-  player = new Player(playerRun);
+  player = new Player(playerIdle, playerRun, playerHurt, playerDead);
 }
 
 function draw() {
@@ -39,16 +34,13 @@ function draw() {
     gameOverScreen();
   } else if (gameScreen == 4) {
     creditsScreen();
-  } else {
-    console.log("fin");
   }
 }
 
 function isColliding(player, opponent) {
   return !(
-    player.x - player.width / 2 > opponent.x + opponent.width / 2 ||
-    player.x + player.width / 2 < opponent.x - opponent.width / 2 ||
-    player.y - player.height / 2 > opponent.y + opponent.height / 2 ||
-    player.y + player.height / 2 < opponent.y - opponent.height / 2
+    player.x - player.width / 2 + 35 > opponent.x + opponent.width / 2 ||
+    player.x + player.width / 2 - 35 < opponent.x - opponent.width / 2 ||
+    player.y - player.height / 2 + 50 > opponent.y + opponent.height / 2
   );
 }

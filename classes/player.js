@@ -1,107 +1,78 @@
 class Player {
-  constructor(sheet) {
+  constructor(idleSheet, runSheet, hurtSheet, deadSheet) {
     this.x = 300;
-    this.y = 600 - 125;
-    this.width = 42;
-    this.height = 64;
+    this.y = 474;
+    this.width = 128;
+    this.height = 128;
     this.vel = 5;
     this.life = 3;
-    this.sheet = sheet;
-    this.animationData = [];
+    this.state = "idle"; // Estado inicial del personaje
+    this.facingRight = true; // Indica la dirección del personaje
+    this.animationData = {
+      idle: { animation: idleSheet, frames: 4 },
+      run: { animation: runSheet, frames: 7 },
+      hurt: { animation: hurtSheet, frames: 1 },
+      dead: { animation: deadSheet, frames: 3 },
+    };
+    this.animationSpeed = 5;
   }
 
   draw() {
+    const { animation, frames } = this.animationData[this.state];
     push();
-    image(this.sheet, this.x, this.y, this.width, this.height, 0, 32, 24, 32);
+    translate(this.x, this.y);
+    if (!this.facingRight) {
+      scale(-1, 1); // Invertir la animación en el eje X
+    }
+    spriteSheet(
+      animation,
+      0,
+      0,
+      this.width,
+      this.height,
+      0,
+      0,
+      128,
+      128,
+      this.animationSpeed,
+      frames
+    );
     pop();
   }
 
   receiveDamage() {
     this.life--;
-    // console.log(this.life);
-    if (this.life == 0) {
-      this.life = 3;
+    this.state = "hurt";
+    this.currentFrame = 0; // Reiniciar frame al cambiar de estado
+    if (this.life <= 0) {
+      this.state = "dead";
+      this.life = 0;
       return true;
     }
+    return false;
   }
 
   move() {
-    this.x = constrain(this.x, 0 + this.width / 2, width - this.width / 2);
     if (keyIsDown(RIGHT_ARROW)) {
       this.x += this.vel;
-    }
-    if (keyIsDown(LEFT_ARROW)) {
-      this.x -= this.vel;
-    }
-  }
-
-  update() {
-    this.draw();
-    this.move();
-  }
-}
-
-//GPT hint
-/*
-let counter = 0;
-let frameTimer = 0;
-const frameInterval = 10; // Cambia este valor para ajustar la velocidad de la animación
-
-function spriteSheet(sheet, dx, dy, dw, dh, sx, sy, sw, sh, frameNumber) {
-  if (frameTimer % frameInterval === 0) {
-    image(sheet, dx, dy, dw, dh, sx + sw * counter, sy, sw, sh);
-    counter = (counter < frameNumber - 1) ? counter + 1 : 0;
-    console.log(counter);
-  }
-  frameTimer++;
-}
-
-class Player {
-  constructor(runSheet, idleSheet, hurtSheet, deadSheet) {
-    this.x = 300;
-    this.y = 600 - 125;
-    this.width = 42;
-    this.height = 64;
-    this.vel = 5;
-    this.life = 3;
-    this.sheets = {
-      run: runSheet,
-      idle: idleSheet,
-      hurt: hurtSheet,
-      dead: deadSheet
-    };
-    this.currentAnimation = 'idle';
-  }
-
-  draw() {
-    push();
-    let sheet = this.sheets[this.currentAnimation];
-    let frames = 7; // Número de frames en la animación actual, puedes ajustarlo según la animación
-    spriteSheet(sheet, this.x, this.y, this.width, this.height, 0, 0, this.width, this.height, frames);
-    pop();
-  }
-
-  receiveDamage() {
-    this.life--;
-    this.currentAnimation = 'hurt';
-  }
-
-  move() {
-    this.x = constrain(this.x, 0 + this.width / 2, width - this.width / 2);
-    if (keyIsDown(RIGHT_ARROW)) {
-      this.x += this.vel;
-      this.currentAnimation = 'run';
+      this.state = "run";
+      this.facingRight = true;
     } else if (keyIsDown(LEFT_ARROW)) {
       this.x -= this.vel;
-      this.currentAnimation = 'run';
+      this.state = "run";
+      this.facingRight = false;
     } else {
-      this.currentAnimation = 'idle';
+      this.state = "idle";
     }
+    this.x = constrain(
+      this.x,
+      0 + this.width / 2 - 35,
+      width - this.width / 2 + 35
+    );
   }
 
   update() {
-    this.draw();
     this.move();
+    this.draw();
   }
 }
-*/

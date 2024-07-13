@@ -113,9 +113,12 @@ function spriteSheet(
   animationSpeed,
   frameNumber
 ) {
+  push();
+  imageMode(CENTER);
   image(sheet, dx, dy, dw, dh, sx + sw * counter, sy, sw, sh);
   if (frameCount % animationSpeed == 0)
     counter < frameNumber ? counter++ : (counter = 0);
+  pop();
 }
 
 //GAME OVER SCREEN
