@@ -6,8 +6,8 @@ class Player {
     this.height = 128;
     this.vel = 5;
     this.life = 3;
-    this.state = "idle"; // Estado inicial del personaje
-    this.facingRight = true; // Indica la dirección del personaje
+    this.state = "idle";
+    this.facingRight = true;
     this.animationData = {
       idle: { animation: idleSheet, frames: 4 },
       run: { animation: runSheet, frames: 7 },
@@ -22,7 +22,7 @@ class Player {
     push();
     translate(this.x, this.y);
     if (!this.facingRight) {
-      scale(-1, 1); // Invertir la animación en el eje X
+      scale(-1, 1);
     }
     spriteSheet(
       animation,
@@ -43,7 +43,7 @@ class Player {
   receiveDamage() {
     this.life--;
     this.state = "hurt";
-    this.currentFrame = 0; // Reiniciar frame al cambiar de estado
+    this.currentFrame = 0;
     if (this.life <= 0) {
       this.state = "dead";
       this.life = 0;
