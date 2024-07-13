@@ -1,25 +1,21 @@
-//pantalla de inicio
+//PANTALLA INICIO
 function gameIndex() {
-  const playButton = new CustomText(width / 2, height / 2, "Jugar", 60);
-  playButton.update();
-}
-
-function mousePressed() {
-  if (!hover(width / 2, height / 2, 160, 70)) {
-    gameScreen = 2;
-  }
-}
-
-function hover(x, y, width, height) {
-  return (
-    x + width / 2 < mouseX ||
-    x - width / 2 > mouseX ||
-    y + height / 2 < mouseY ||
-    y - height / 2 > mouseY
+  score = 0;
+  coins = [];
+  opponents = [];
+  const creditsButton = new CustomText(
+    width / 2,
+    height / 2 + 30,
+    "creditos",
+    30
   );
+  const playButton = new CustomText(width / 2, height / 2 - 40, "Jugar", 55);
+  playButton.update();
+  creditsButton.update();
+  bgImg();
 }
 
-//pantalla de juego
+//PANTALLA JUEGO
 function playScreen() {
   const scoreText = new CustomText(
     width * 0.17,
@@ -28,6 +24,7 @@ function playScreen() {
     30,
     false
   );
+  bgImg();
   player.update();
   //manejo de oponentes
   if (frameCount % 60 == 0) {
@@ -52,11 +49,60 @@ function playScreen() {
     opponents[i].update();
     if (isColliding(player, opponents[i])) {
       opponents.splice(i, 1);
-      // score += 5;
-      player.receiveDamage();
+      if (player.receiveDamage()) gameScreen = 3;
     } else if (opponents[i].floorCollision()) {
       opponents.splice(i, 1);
     }
   }
   scoreText.update();
+}
+
+//GAME OVER SCREEN
+function gameOverScreen() {
+  const pressEnter = new CustomText(
+    width / 2,
+    height / 2 + 50,
+    "Pulsa ENTER para continuar",
+    20,
+    false
+  );
+  const gameOverText = new CustomText(
+    width / 2,
+    height / 2,
+    "Game Over",
+    60,
+    false
+  );
+  const playerScore = new CustomText(
+    width / 2,
+    height / 2 - 110,
+    `tu score: ${score}`,
+    40,
+    false
+  );
+  gameOverText.update();
+  pressEnter.update();
+  playerScore.update();
+  bgImg();
+}
+
+//CREDITS SCREEN
+function creditsScreen() {
+  bgImg();
+  const credits = new CustomText(
+    width / 2,
+    height / 2 - 45,
+    "desarrollado por: \n yanina longo\n mauro giachero ",
+    40,
+    false
+  );
+  const pressEnter = new CustomText(
+    width / 2,
+    height / 2 + 120,
+    "Pulsa ENTER \npara volver al menu principal",
+    20,
+    false
+  );
+  pressEnter.update();
+  credits.update();
 }

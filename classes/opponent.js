@@ -20,7 +20,7 @@ class Opponent {
   }
 
   floorCollision() {
-    return this.y + this.height / 2 > 600;
+    return this.y + this.height / 2 > 533;
   }
 
   update() {
