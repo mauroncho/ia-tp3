@@ -28,3 +28,9 @@ class Opponent {
     this.move();
   }
 }
+
+class Diamond extends Opponent {
+  constructor() {
+    super();
+  }
+}

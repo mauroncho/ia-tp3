@@ -24,6 +24,13 @@ function playScreen() {
     30,
     false
   );
+  const lifeText = new CustomText(
+    width * 0.8,
+    height * 0.09,
+    `Vidas: ${player.lifeTracker()}`,
+    30,
+    false
+  );
   bgImg();
   player.update();
   //manejo de oponentes
@@ -55,6 +62,7 @@ function playScreen() {
     }
   }
   scoreText.update();
+  lifeText.update();
 }
 
 //GAME OVER SCREEN

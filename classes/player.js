@@ -43,13 +43,17 @@ class Player {
   receiveDamage() {
     this.life--;
     this.state = "hurt";
-    this.currentFrame = 0;
+    // this.currentFrame = 0;
     if (this.life <= 0) {
       this.state = "dead";
-      this.life = 0;
+      this.life = 3;
       return true;
     }
     return false;
+  }
+
+  lifeTracker() {
+    return this.life;
   }
 
   move() {
@@ -74,5 +78,6 @@ class Player {
   update() {
     this.move();
     this.draw();
+    this.lifeTracker();
   }
 }
