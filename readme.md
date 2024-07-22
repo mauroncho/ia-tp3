@@ -1,12 +1,13 @@
-Trabajo práctico desarrollado por Yanina Longo y Mauro Giachero para la materia Informática aplicada I (cátedra Bedoian) de la Universidad Nacional de las Artes.
+## Trabajo práctico Nº3 - Minijuego
 
-Se utiliza la librería p5.js y se trabaja una introducción a los estados y la programación orientada a objetos (OOP).
+Desarrollado por Yanina Longo y Mauro Giachero para la materia Informática aplicada I (cátedra Bedoian) de la Universidad Nacional de las Artes.
 
-Funcionalidades a agregar:
+Utilizamos la librería p5.js y trabajos los conceptos de estados y programación orientada a objetos (OOP).
+
+### Work in progress:
 
 - Win condition (todavía no la tenemos pensada)
-- Vidas del jugador (Lose condition (?)): agregar visualización a la pantalla de juego
-- Gráficos del juego: desarrollar gráfica para elementos que sumen puntos y también para enemigos
-- Mejorar detalles de la lógica: hover del menú principal, dibujo del background
-- Mejorar HTML
+- Gráficos del juego: desarrollar gráfica para enemigos
+- Mejorar detalles de la lógica: hover del menú principal, dibujo del background, las animaciones con sprite sheets
+- Mejorar HTML: agregar instrucciones para jugar, nombrar los artistas que proveen las piezas gráficas, indicar cómo se gana y cómo se pierde
 - Buscar nombre al juego
