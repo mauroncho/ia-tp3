@@ -4,6 +4,8 @@ let playerRun;
 let playerIdle;
 let playerDead;
 let playerHurt;
+let diamondSheet;
+// let diamond;
 function preload() {
   font1 = loadFont("./assets/fonts/slkscr.ttf");
   bg = loadImage("./assets/img/bg.png");
@@ -11,8 +13,8 @@ function preload() {
   playerRun = loadImage("./assets/img/run.png");
   playerDead = loadImage("./assets/img/dead.png");
   playerHurt = loadImage("./assets/img/hurt.png");
+  diamondSheet = loadImage("./assets/img/diamond-yellow.png");
 }
-let coins = [];
 let opponents = [];
 let gameScreen = 1;
 let score = 0;
@@ -22,6 +24,7 @@ function setup() {
   textFont(font1);
   rectMode(CENTER);
   player = new Player(playerIdle, playerRun, playerHurt, playerDead);
+  // diamond = new Diamond(100, 2, 64, 64, "green", diamondSheet);
 }
 
 function draw() {

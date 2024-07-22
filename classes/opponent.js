@@ -1,11 +1,14 @@
 class Opponent {
-  constructor(x, vel, fill) {
+  constructor(x, vel, width, height, fill, spriteSheet) {
     this.x = x;
     this.y = 0;
-    this.width = 50;
-    this.height = 50;
+    this.width = width;
+    this.height = height;
     this.fill = fill;
     this.vel = vel;
+    this.sprite = spriteSheet;
+    this.animationSpeed = 12;
+    this.internalCounter = 0;
   }
 
   draw() {
@@ -30,7 +33,45 @@ class Opponent {
 }
 
 class Diamond extends Opponent {
-  constructor() {
-    super();
+  constructor(x, vel, width, height, fill, spriteSheet) {
+    super(x, vel, width, height, fill, spriteSheet);
+    this.frames = 7;
+  }
+
+  draw() {
+    push();
+    translate(this.x, this.y);
+    // fill(this.fill);
+    // rect(0, 0, this.width, this.height);
+    if (frameCount % this.animationSpeed == 0) {
+      console.log(this.internalCounter);
+
+      if (this.internalCounter < this.frames) {
+        this.internalCounter++;
+      } else {
+        this.internalCounter = 0;
+      }
+    }
+    imageMode(CENTER);
+    image(
+      this.sprite,
+      0,
+      0,
+      this.width,
+      this.height,
+      0,
+      0,
+      32,
+      32,
+      this.animationSpeed,
+      this.frames
+    );
+    pop();
+  }
+}
+
+class Fire extends Opponent {
+  constructor(x, vel, width, height, fill) {
+    super(x, vel, width, height, fill);
   }
 }

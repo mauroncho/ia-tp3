@@ -15,6 +15,7 @@ class Player {
       dead: { animation: deadSheet, frames: 3 },
     };
     this.animationSpeed = 5;
+    this.internalCounter = 0;
   }
 
   draw() {
@@ -24,36 +25,28 @@ class Player {
     if (!this.facingRight) {
       scale(-1, 1);
     }
-    spriteSheet(
+    if (frameCount % this.animationSpeed == 0) {
+      if (this.internalCounter < frames) {
+        this.internalCounter++;
+      } else {
+        this.internalCounter = 0;
+      }
+    }
+    imageMode(CENTER);
+    image(
       animation,
       0,
       0,
       this.width,
       this.height,
+      0 + this.width * this.internalCounter,
       0,
-      0,
-      128,
-      128,
+      this.height,
+      this.width,
       this.animationSpeed,
       frames
     );
     pop();
-  }
-
-  receiveDamage() {
-    this.life--;
-    this.state = "hurt";
-    // this.currentFrame = 0;
-    if (this.life <= 0) {
-      this.state = "dead";
-      this.life = 3;
-      return true;
-    }
-    return false;
-  }
-
-  lifeTracker() {
-    return this.life;
   }
 
   move() {
@@ -75,6 +68,24 @@ class Player {
     );
   }
 
+  //metodos que manejan la vida
+  receiveDamage() {
+    this.life--;
+    this.state = "hurt";
+    // this.currentFrame = 0;
+    if (this.life <= 0) {
+      this.state = "dead";
+      this.life = 3;
+      return true;
+    }
+    return false;
+  }
+
+  lifeTracker() {
+    return this.life;
+  }
+
+  //update engloba varios metodos que estan activos todo el tiempo
   update() {
     this.move();
     this.draw();

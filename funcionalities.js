@@ -42,8 +42,8 @@ function bgImg() {
 //DIBUJAR SPRITESHEETS PARA ANIMACIONES
 //en la funcion image "d" significa destination y "s", source
 //image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight])
-let counter = 0;
-function spriteSheet(
+let playerCounter = 0;
+function animateSheet(
   sheet,
   dx,
   dy,
@@ -58,8 +58,16 @@ function spriteSheet(
 ) {
   push();
   imageMode(CENTER);
-  image(sheet, dx, dy, dw, dh, sx + sw * counter, sy, sw, sh);
+  image(sheet, dx, dy, dw, dh, sx + sw * playerCounter, sy, sw, sh);
   if (frameCount % animationSpeed == 0)
-    counter < frameNumber ? counter++ : (counter = 0);
+    playerCounter < frameNumber ? playerCounter++ : (playerCounter = 0);
   pop();
 }
+
+//VERSION GPT
+// function animateSheet(sheet, dx, dy, dw, dh, sx, sy, sw, sh, counter) {
+//   push();
+//   imageMode(CENTER);
+//   image(sheet, dx, dy, dw, dh, sx + sw * counter, sy, sw, sh);
+//   pop();
+// }
