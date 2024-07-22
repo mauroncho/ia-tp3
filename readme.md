@@ -2,7 +2,7 @@
 
 Desarrollado por Yanina Longo y Mauro Giachero para la materia Informática aplicada I (cátedra Bedoian) de la Universidad Nacional de las Artes.
 
-Utilizamos la librería p5.js y trabajos los conceptos de estados y programación orientada a objetos (OOP).
+Utilizamos la librería p5.js y trabajamos los conceptos de estado y programación orientada a objetos (OOP).
 
 ### Work in progress:
 
