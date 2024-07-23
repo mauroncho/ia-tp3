@@ -21,6 +21,21 @@ function keyPressed() {
   }
 }
 
+//COLISION ENTRE PERSONAJE Y ELEMENTOS
+function isColliding(
+  player,
+  opponentX,
+  opponentY,
+  opponentWidth,
+  opponentHeight
+) {
+  return !(
+    player.x - player.width / 2 + 35 > opponentX + opponentWidth / 2 ||
+    player.x + player.width / 2 - 35 < opponentX - opponentWidth / 2 ||
+    player.y - player.height / 2 + 60 > opponentY + opponentHeight / 2
+  );
+}
+
 //HOVER SOBRE LOS TEXTOS DE INICIO
 function hover(x, y, width, height) {
   return (
@@ -42,24 +57,3 @@ function bgImg() {
 //DIBUJAR SPRITESHEETS PARA ANIMACIONES
 //en la funcion image "d" significa destination y "s", source
 //image(img, dx, dy, dWidth, dHeight, sx, sy, [sWidth], [sHeight])
-let counter = 0;
-function spriteSheet(
-  sheet,
-  dx,
-  dy,
-  dw,
-  dh,
-  sx,
-  sy,
-  sw,
-  sh,
-  animationSpeed,
-  frameNumber
-) {
-  push();
-  imageMode(CENTER);
-  image(sheet, dx, dy, dw, dh, sx + sw * counter, sy, sw, sh);
-  if (frameCount % animationSpeed == 0)
-    counter < frameNumber ? counter++ : (counter = 0);
-  pop();
-}

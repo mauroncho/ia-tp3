@@ -1,8 +1,8 @@
 //PANTALLA INICIO
 function gameIndex() {
   score = 0;
-  coins = [];
-  opponents = [];
+  diamonds = [];
+  fires = [];
   const creditsButton = new CustomText(
     width / 2,
     height / 2 + 30,
@@ -19,14 +19,14 @@ function gameIndex() {
 function playScreen() {
   const scoreText = new CustomText(
     width * 0.17,
-    height * 0.09,
+    height * 0.06,
     `Score: ${score}`,
     30,
     false
   );
   const lifeText = new CustomText(
     width * 0.8,
-    height * 0.09,
+    height * 0.06,
     `Vidas: ${player.lifeTracker()}`,
     30,
     false
@@ -35,30 +35,48 @@ function playScreen() {
   player.update();
   //manejo de oponentes
   if (frameCount % 60 == 0) {
-    coins.push(new Opponent(random(30, 570), random(3, 6), "green"));
+    diamonds.push(
+      new Diamond(random(30, 570), random(3, 6), 40, 40, diamondSheet)
+    );
   }
   if (frameCount % 75 == 0) {
-    opponents.push(new Opponent(random(30, 570), random(3, 6), "red"));
+    fires.push(new Fire(random(30, 570), random(3, 6), 100, 100, fireSheet));
   }
   //monedas
   //for loop "inverso" (con i--) para evitar el flickering que generan los elementos no procesados
-  for (let i = coins.length - 1; i >= 0; i--) {
-    coins[i].update();
-    if (isColliding(player, coins[i])) {
-      coins.splice(i, 1);
+  for (let i = diamonds.length - 1; i >= 0; i--) {
+    diamonds[i].update();
+    if (
+      isColliding(
+        player,
+        diamonds[i].x,
+        diamonds[i].y,
+        diamonds[i].width,
+        diamonds[i].height
+      )
+    ) {
+      diamonds.splice(i, 1);
       score += 5;
-    } else if (coins[i].floorCollision()) {
-      coins.splice(i, 1);
+    } else if (diamonds[i].floorCollision()) {
+      diamonds.splice(i, 1);
     }
   }
   //opponentes
-  for (let i = opponents.length - 1; i >= 0; i--) {
-    opponents[i].update();
-    if (isColliding(player, opponents[i])) {
-      opponents.splice(i, 1);
+  for (let i = fires.length - 1; i >= 0; i--) {
+    fires[i].update();
+    if (
+      isColliding(
+        player,
+        fires[i].x,
+        fires[i].y,
+        fires[i].width - 63,
+        fires[i].height - 45
+      )
+    ) {
+      fires.splice(i, 1);
       if (player.receiveDamage()) gameScreen = 3;
-    } else if (opponents[i].floorCollision()) {
-      opponents.splice(i, 1);
+    } else if (fires[i].floorCollision()) {
+      fires.splice(i, 1);
     }
   }
   scoreText.update();
