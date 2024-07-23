@@ -4,7 +4,7 @@ Desarrollado por Yanina Longo y Mauro Giachero para la materia Informática apli
 
 Utilizamos la librería p5.js y trabajamos los conceptos de estado y programación orientada a objetos (OOP).
 
-Jugalo acá: https://ia-tp3.netlify.app/
+**Jugalo acá:** https://ia-tp3.netlify.app/
 
 ### Work in progress:
 
