@@ -36,17 +36,25 @@ function playScreen() {
   //manejo de oponentes
   if (frameCount % 60 == 0) {
     diamonds.push(
-      new Diamond(random(30, 570), random(3, 6), 40, 40, "green", diamondSheet)
+      new Diamond(random(30, 570), random(3, 6), 40, 40, diamondSheet)
     );
   }
   if (frameCount % 75 == 0) {
-    fires.push(new Fire(random(30, 570), random(3, 6), 50, 50, "red"));
+    fires.push(new Fire(random(30, 570), random(3, 6), 100, 100, fireSheet));
   }
   //monedas
   //for loop "inverso" (con i--) para evitar el flickering que generan los elementos no procesados
   for (let i = diamonds.length - 1; i >= 0; i--) {
     diamonds[i].update();
-    if (isColliding(player, diamonds[i])) {
+    if (
+      isColliding(
+        player,
+        diamonds[i].x,
+        diamonds[i].y,
+        diamonds[i].width,
+        diamonds[i].height
+      )
+    ) {
       diamonds.splice(i, 1);
       score += 5;
     } else if (diamonds[i].floorCollision()) {
@@ -56,7 +64,15 @@ function playScreen() {
   //opponentes
   for (let i = fires.length - 1; i >= 0; i--) {
     fires[i].update();
-    if (isColliding(player, fires[i])) {
+    if (
+      isColliding(
+        player,
+        fires[i].x,
+        fires[i].y,
+        fires[i].width - 63,
+        fires[i].height - 45
+      )
+    ) {
       fires.splice(i, 1);
       if (player.receiveDamage()) gameScreen = 3;
     } else if (fires[i].floorCollision()) {

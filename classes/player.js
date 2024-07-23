@@ -72,7 +72,6 @@ class Player {
   receiveDamage() {
     this.life--;
     this.state = "hurt";
-    // this.currentFrame = 0;
     if (this.life <= 0) {
       this.state = "dead";
       this.life = 3;

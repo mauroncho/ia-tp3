@@ -1,21 +1,13 @@
 class Opponent {
-  constructor(x, vel, width, height, fill, spriteSheet) {
+  constructor(x, vel, width, height, spriteSheet) {
     this.x = x;
     this.y = 0;
     this.width = width;
     this.height = height;
-    this.fill = fill;
     this.vel = vel;
     this.sprite = spriteSheet;
-    this.animationSpeed = 12;
+    this.animationSpeed = 3;
     this.internalCounter = 0;
-  }
-
-  draw() {
-    push();
-    fill(this.fill);
-    rect(this.x, this.y, this.width, this.height);
-    pop();
   }
 
   move() {
@@ -32,20 +24,17 @@ class Opponent {
   }
 }
 
+//CLASE DIAMANTES
 class Diamond extends Opponent {
-  constructor(x, vel, width, height, fill, spriteSheet) {
-    super(x, vel, width, height, fill, spriteSheet);
+  constructor(x, vel, width, height, spriteSheet) {
+    super(x, vel, width, height, spriteSheet);
     this.frames = 7;
   }
 
   draw() {
     push();
     translate(this.x, this.y);
-    // fill(this.fill);
-    // rect(0, 0, this.width, this.height);
     if (frameCount % this.animationSpeed == 0) {
-      console.log(this.internalCounter);
-
       if (this.internalCounter < this.frames) {
         this.internalCounter++;
       } else {
@@ -53,25 +42,42 @@ class Diamond extends Opponent {
       }
     }
     imageMode(CENTER);
+    image(this.sprite, 0, 0, this.width, this.height, 0, 0, 32, 32);
+    pop();
+  }
+}
+
+//CLASE FUEGO
+class Fire extends Opponent {
+  constructor(x, vel, width, height, spriteSheet) {
+    super(x, vel, width, height, spriteSheet);
+    this.internalCounter = 0;
+    this.frames = 7;
+  }
+
+  draw() {
+    push();
+    translate(this.x, this.y);
+    if (frameCount % this.animationSpeed == 0) {
+      if (this.internalCounter < this.frames) {
+        this.internalCounter++;
+      } else {
+        this.internalCounter = 0;
+      }
+    }
+
+    imageMode(CENTER);
     image(
       this.sprite,
       0,
       0,
       this.width,
       this.height,
+      0 + 100 * this.internalCounter,
       0,
-      0,
-      32,
-      32,
-      this.animationSpeed,
-      this.frames
+      100,
+      100
     );
     pop();
-  }
-}
-
-class Fire extends Opponent {
-  constructor(x, vel, width, height, fill) {
-    super(x, vel, width, height, fill);
   }
 }
