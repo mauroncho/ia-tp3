@@ -8,8 +8,8 @@ Utilizamos la librería p5.js y trabajamos los conceptos de estado y programaci�
 
 ### Work in progress:
 
-- Win condition (todavía no la tenemos pensada)
-- Aumentar dificuldad a medida que se suman puntos
+- Win condition: llegar a 350 puntos
+- Mejorar lógica del aumento de dificuldad
 - Gráficos del juego: mejorar lógica de animaciones
 - Mejorar detalles de la lógica: hover del menú principal, dibujo del background, colisiones entre personaje y elementos
 - Mejorar HTML: agregar instrucciones para jugar, nombrar los artistas que proveen las piezas gráficas, indicar cómo se gana y cómo se pierde

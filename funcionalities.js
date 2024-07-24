@@ -9,12 +9,7 @@ function mousePressed() {
 }
 
 function keyPressed() {
-  if (gameScreen == 3) {
-    if (keyCode === ENTER) {
-      gameScreen = 1;
-    }
-  }
-  if (gameScreen == 4) {
+  if (gameScreen == 3 || gameScreen == 4) {
     if (keyCode === ENTER) {
       gameScreen = 1;
     }
