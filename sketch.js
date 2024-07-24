@@ -8,6 +8,12 @@ let diamondSheet;
 let fireSheet;
 let gameScreen = 1;
 let score = 0;
+let diamondSpawn = 60;
+let diamondMinVel = 3;
+let diamondMaxVel = 6;
+let fireSpawn = 75;
+let fireMinVel = 3;
+let fireMaxVel = 3;
 
 function preload() {
   font1 = loadFont("./assets/fonts/slkscr.ttf");

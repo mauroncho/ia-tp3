@@ -1,8 +1,12 @@
-//PANTALLA INICIO
+//PANTALLA INICIO - gameScreen == 1
 function gameIndex() {
+  //reset de variables
   score = 0;
   diamonds = [];
   fires = [];
+  // diamondSpawn = 60;
+  // fireSpawn = 75;
+  //textos de esta pantalla
   const creditsButton = new CustomText(
     width / 2,
     height / 2 + 30,
@@ -15,7 +19,7 @@ function gameIndex() {
   bgImg();
 }
 
-//PANTALLA JUEGO
+//PANTALLA JUEGO - gameScreen == 2
 function playScreen() {
   const scoreText = new CustomText(
     width * 0.17,
@@ -33,16 +37,29 @@ function playScreen() {
   );
   bgImg();
   player.update();
-  //manejo de oponentes
-  if (frameCount % 60 == 0) {
+  if (frameCount % diamondSpawn == 0) {
     diamonds.push(
-      new Diamond(random(30, 570), random(3, 6), 40, 40, diamondSheet)
+      new Diamond(
+        random(30, 570),
+        random(diamondMinVel, diamondMaxVel),
+        40,
+        40,
+        diamondSheet
+      )
     );
   }
-  if (frameCount % 75 == 0) {
-    fires.push(new Fire(random(30, 570), random(3, 6), 100, 100, fireSheet));
+  if (frameCount % fireSpawn == 0) {
+    fires.push(
+      new Fire(
+        random(30, 570),
+        random(fireMinVel, fireMaxVel),
+        100,
+        100,
+        fireSheet
+      )
+    );
   }
-  //monedas
+  //diamantes
   //for loop "inverso" (con i--) para evitar el flickering que generan los elementos no procesados
   for (let i = diamonds.length - 1; i >= 0; i--) {
     diamonds[i].update();
@@ -61,7 +78,7 @@ function playScreen() {
       diamonds.splice(i, 1);
     }
   }
-  //opponentes
+  //fueguitos
   for (let i = fires.length - 1; i >= 0; i--) {
     fires[i].update();
     if (
@@ -81,9 +98,33 @@ function playScreen() {
   }
   scoreText.update();
   lifeText.update();
+
+  //incremento de dificultad
+  if (score > 50 && score < 100) {
+    diamondSpawn = 50;
+    fireSpawn = 60;
+    diamondMinVel = 4;
+    fireMinVel = 4;
+  } else if (score > 100 && score < 150) {
+    diamondSpawn = 40;
+    fireSpawn = 45;
+    diamondMinVel = 5;
+    fireMinVel = 4;
+  } else if (score > 150 && score < 200) {
+    fireSpawn = 30;
+    fireMinVel = 6;
+    fireMaxVel = 8;
+  } else if (score > 200 && score < 300) {
+    diamondSpawn = 25;
+    diamondMaxVel = 7;
+    fireSpawn = 20;
+    fireMaxVel = 10;
+  } else if (score > 300) {
+    fireSpawn = 10;
+  }
 }
 
-//GAME OVER SCREEN
+//PANTALLA GAME OVER - gameScreen == 3
 function gameOverScreen() {
   const pressEnter = new CustomText(
     width / 2,
@@ -112,20 +153,20 @@ function gameOverScreen() {
   bgImg();
 }
 
-//CREDITS SCREEN
+//PANTALLA CREDITOS - gameScreen == 4
 function creditsScreen() {
   bgImg();
   const credits = new CustomText(
     width / 2,
     height / 2 - 45,
-    "desarrollado por: \n yanina longo\n mauro giachero ",
+    "desarrollado por: \n yanina longo \n mauro giachero ",
     40,
     false
   );
   const pressEnter = new CustomText(
     width / 2,
     height / 2 + 120,
-    "Pulsa ENTER \npara volver al menu principal",
+    "Pulsa ENTER \n para volver al menu principal",
     20,
     false
   );

@@ -15,7 +15,7 @@ class Opponent {
   }
 
   floorCollision() {
-    return this.y + this.height / 2 > 533;
+    return this.y + this.height / 2 > 540;
   }
 
   update() {
@@ -34,13 +34,6 @@ class Diamond extends Opponent {
   draw() {
     push();
     translate(this.x, this.y);
-    if (frameCount % this.animationSpeed == 0) {
-      if (this.internalCounter < this.frames) {
-        this.internalCounter++;
-      } else {
-        this.internalCounter = 0;
-      }
-    }
     imageMode(CENTER);
     image(this.sprite, 0, 0, this.width, this.height, 0, 0, 32, 32);
     pop();
@@ -79,5 +72,8 @@ class Fire extends Opponent {
       100
     );
     pop();
+  }
+  floorCollision() {
+    return this.y + this.height / 2 > 557;
   }
 }
