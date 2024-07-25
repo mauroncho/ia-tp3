@@ -1,8 +1,26 @@
+@font-face {
+  font-family: "slkscr";
+  src: url("assets/fonts/slkscr.ttf") format("truetype");
+  src: url("assets/fonts/slkscrb.ttf") format("truetype");
+  src: url("assets/fonts/slkscre.ttf") format("truetype");
+  src: url("assets/fonts/slkscreb.ttf") format("truetype");
+
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   padding: 0;
   margin: 0;
   background-color: #1b1b1b;
   color: whitesmoke;
+  font-size: 1.2em;
+  /* font-family: "slkscr"; */
+  font-family: "Montserrat";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #container {
@@ -10,4 +28,55 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-width: 600px;
+}
+
+ul {
+  /* list-style: none; */
+  /* list-style-type: square; */
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.instrucciones-container {
+  /* display: flex;
+  gap: 36px; */
+  padding: 8px 0;
+  /* align-self: flex-start; */
+}
+
+.instrucciones {
+  /* display: flex; */
+  padding: 8px;
+
+  /* border: whitesmoke 2px dashed; */
+  border-radius: 15px;
+
+  li {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  span {
+    min-width: 50px;
+    text-align: center;
+  }
+}
+
+#fuego-img {
+  height: 38px;
+}
+
+.artistas {
+  padding: 16px;
+  border: whitesmoke 2px dashed;
+  border-radius: 15px;
 }

@@ -4,13 +4,60 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TP 3 - Minijuego</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
     <div id="container">
       <header>
-        <h1>TP 3 - Minijuego</h1>
+        <h1>Igniel</h1>
+        <div class="instrucciones-container">
+          <ul class="instrucciones">
+            <li>
+              <span>
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1.25"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-keyboard"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M2 6m0 2a2 2 0 0 1 2 -2h16a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2z" /><path d="M6 10l0 .01" /><path d="M10 10l0 .01" /><path d="M14 10l0 .01" /><path d="M18 10l0 .01" /><path d="M6 14l0 .01" /><path d="M18 14l0 .01" /><path d="M10 14l4 .01" /></svg>
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M2 6m0 2a2 2 0 0 1 2 -2h16a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2z"/>
+                  <path d="M6 10l0 .01" />
+                  <path d="M10 10l0 .01" />
+                  <path d="M14 10l0 .01" />
+                  <path d="M18 10l0 .01" />
+                  <path d="M6 14l0 .01" />
+                  <path d="M18 14l0 .01" />
+                  <path d="M10 14l4 .01" />
+                </svg> 
+              </span>
+              Movete con las flechas del teclado
+            </li>
+            <li>
+              <span>
+                <img src="./assets/img/diamond-yellow-s.png" alt=""/>
+            </span>
+              Suma puntos juntando diamantes
+            </li>
+            <li>
+              <span>
+                <img id="fuego-img" src="./assets/img/fire-s.png" alt=""/>
+              </span>
+              El fuego te quita vida
+            </li>
+          </ul>
+          <!-- <p class="artistas">Estos artistas nos ayudaron</p> -->
+          <!-- 
+          Background por: Lanea Zimmerman
+          https://opengameart.org/content/dirt-platformer-tiles
+          fuego:
+          https://opengameart.org/content/free-pixel-effects-pack
+          @DavitMasia and @CodeManuPro at twitter
+          diamantes:
+          https://opengameart.org/content/rotating-crystal-animation-8-step
+          personaje:
+          https://craftpix.net/freebies/free-fantasy-chibi-female-sprites-pixel-art/
+          -->
+        </div>
       </header>
       <main>
         <canvas id="game"></canvas>

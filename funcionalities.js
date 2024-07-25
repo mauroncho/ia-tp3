@@ -25,8 +25,8 @@ function isColliding(
   opponentHeight
 ) {
   return !(
-    player.x - player.width / 2 + 35 > opponentX + opponentWidth / 2 ||
-    player.x + player.width / 2 - 35 < opponentX - opponentWidth / 2 ||
+    player.x - player.width / 2 + 50 > opponentX + opponentWidth / 2 ||
+    player.x + player.width / 2 - 50 < opponentX - opponentWidth / 2 ||
     player.y - player.height / 2 + 60 > opponentY + opponentHeight / 2
   );
 }
