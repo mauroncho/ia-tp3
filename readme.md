@@ -10,7 +10,7 @@ Utilizamos la librería p5.js y trabajamos los conceptos de estado y programaci�
 
 - Win condition: llegar a 350 puntos
 - Mejorar lógica del aumento de dificuldad
-- Gráficos del juego: mejorar lógica de animaciones
+- Gráficos del juego: mejorar cuadro en blanco del personaje al cambiar de animación
 - Mejorar detalles de la lógica: hover del menú principal, dibujo del background, colisiones entre personaje y elementos
 - Mejorar HTML: agregar instrucciones para jugar, nombrar los artistas que proveen las piezas gráficas, indicar cómo se gana y cómo se pierde
 - Buscar nombre al juego

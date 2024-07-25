@@ -6,7 +6,7 @@ class Opponent {
     this.height = height;
     this.vel = vel;
     this.sprite = spriteSheet;
-    this.animationSpeed = 3;
+    this.animationSpeed = 1;
     this.internalCounter = 0;
   }
 
@@ -45,7 +45,7 @@ class Fire extends Opponent {
   constructor(x, vel, width, height, spriteSheet) {
     super(x, vel, width, height, spriteSheet);
     this.internalCounter = 0;
-    this.frames = 7;
+    this.frames = 60;
   }
 
   draw() {
