@@ -4,8 +4,6 @@ function gameIndex() {
   score = 0;
   diamonds = [];
   fires = [];
-  // diamondSpawn = 60;
-  // fireSpawn = 75;
   //textos de esta pantalla
   const creditsButton = new CustomText(
     width / 2,
