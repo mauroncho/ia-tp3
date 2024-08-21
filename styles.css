@@ -25,58 +25,8 @@ body {
 
 #container {
   display: flex;
+  min-height: 100dvh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 600px;
-}
-
-ul {
-  /* list-style: none; */
-  /* list-style-type: square; */
-  margin: 0;
-  padding: 0;
-}
-
-h1 {
-  text-align: center;
-  margin-top: 24px;
-  margin-bottom: 8px;
-}
-
-.instrucciones-container {
-  /* display: flex;
-  gap: 36px; */
-  padding: 8px 0;
-  /* align-self: flex-start; */
-}
-
-.instrucciones {
-  /* display: flex; */
-  padding: 8px;
-
-  /* border: whitesmoke 2px dashed; */
-  border-radius: 15px;
-
-  li {
-    min-height: 50px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  span {
-    min-width: 50px;
-    text-align: center;
-  }
-}
-
-#fuego-img {
-  height: 38px;
-}
-
-.artistas {
-  padding: 16px;
-  border: whitesmoke 2px dashed;
-  border-radius: 15px;
 }

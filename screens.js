@@ -2,39 +2,68 @@
 function gameIndex() {
   //reset de variables
   score = 0;
+  diamondSpawn = 60;
+  diamondMinVel = 3;
+  diamondMaxVel = 6;
+  fireSpawn = 75;
+  fireMinVel = 3;
+  fireMaxVel = 3;
   diamonds = [];
   fires = [];
   //textos de esta pantalla
-  const creditsButton = new CustomText(
+  const playButton = new CustomText(
     width / 2,
-    height / 2 + 30,
-    "creditos",
-    30
+    height / 2 - 115,
+    "jugar",
+    65,
+    true
   );
-  const playButton = new CustomText(width / 2, height / 2 - 40, "Jugar", 55);
+  const creditsButton = new CustomText(
+    width / 2 - 5,
+    height / 2 - 45,
+    "créditos",
+    30,
+    true,
+    200
+  );
+  const howToPlay = new CustomText(
+    width / 2,
+    height / 2 + 65,
+    "movete con las flechas del teclado \n los fuegos quitan vida \n los diamantes suman puntos \n sin vidas perdés \n ganás al llegar a 350 puntos ",
+    19,
+    false,
+    180
+  );
+  howToPlay.update();
   playButton.update();
   creditsButton.update();
   bgImg();
+  player.update();
 }
 
 //PANTALLA JUEGO - gameScreen == 2
 function playScreen() {
+  //textos de esta pantalla
   const scoreText = new CustomText(
     width * 0.17,
     height * 0.06,
-    `Score: ${score}`,
+    `score: ${score}`,
     30,
     false
   );
   const lifeText = new CustomText(
     width * 0.8,
     height * 0.06,
-    `Vidas: ${player.lifeTracker()}`,
+    `vidas: ${player.lifeTracker()}`,
     30,
     false
   );
+  scoreText.update();
+  lifeText.update();
+  //dibujo de background y player
   bgImg();
   player.update();
+  //logica para aparicion de diamentes/fuegos (cada x tiempo se agrega una instancia de clase al array correspondiente)
   if (frameCount % diamondSpawn == 0) {
     diamonds.push(
       new Diamond(
@@ -57,7 +86,7 @@ function playScreen() {
       )
     );
   }
-  //diamantes
+  //manejo de array diamantes
   //for loop "inverso" (con i--) para evitar el flickering que generan los elementos no procesados
   for (let i = diamonds.length - 1; i >= 0; i--) {
     diamonds[i].update();
@@ -76,7 +105,7 @@ function playScreen() {
       diamonds.splice(i, 1);
     }
   }
-  //fueguitos
+  //manejo de array fueguitos
   for (let i = fires.length - 1; i >= 0; i--) {
     fires[i].update();
     if (
@@ -89,13 +118,14 @@ function playScreen() {
       )
     ) {
       fires.splice(i, 1);
-      if (player.receiveDamage()) gameScreen = 3;
+      if (player.receiveDamage()) {
+        gameScreen = 3;
+        player.gameRestart();
+      }
     } else if (fires[i].floorCollision()) {
       fires.splice(i, 1);
     }
   }
-  scoreText.update();
-  lifeText.update();
 
   //incremento de dificultad
   if (score > 50 && score < 100) {
@@ -124,27 +154,29 @@ function playScreen() {
 
 //PANTALLA GAME OVER - gameScreen == 3
 function gameOverScreen() {
-  const pressEnter = new CustomText(
+  const playerScore = new CustomText(
     width / 2,
-    height / 2 + 50,
-    "Pulsa ENTER para continuar",
-    20,
+    height / 2 - 50,
+    `score: ${score}`,
+    40,
     false
   );
   const gameOverText = new CustomText(
     width / 2,
     height / 2,
-    "Game Over",
+    "game over",
     60,
     false
   );
-  const playerScore = new CustomText(
+  const pressEnter = new CustomText(
     width / 2,
-    height / 2 - 110,
-    `tu score: ${score}`,
-    40,
-    false
+    height / 2 + 100,
+    "pulsá ENTER para continuar",
+    20,
+    false,
+    200
   );
+
   gameOverText.update();
   pressEnter.update();
   playerScore.update();
@@ -158,16 +190,18 @@ function creditsScreen() {
     width / 2,
     height / 2 - 45,
     "desarrollado por: \n yanina longo \n mauro giachero ",
-    40,
+    45,
     false
   );
   const pressEnter = new CustomText(
     width / 2,
-    height / 2 + 120,
-    "Pulsa ENTER \n para volver al menu principal",
+    height / 2 + 110,
+    "pulsá ENTER \n para volver al menu principal",
     20,
-    false
+    false,
+    200
   );
   pressEnter.update();
   credits.update();
+  player.update();
 }
