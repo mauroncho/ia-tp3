@@ -1,30 +1,24 @@
 class CustomText {
-  constructor(x, y, text, size, showHover = true) {
+  constructor(x, y, text, size, showHover = false, fill = 255) {
     this.x = x;
     this.y = y;
     this.text = text;
     this.size = size;
-    this.fill = 255;
+    this.fill = fill;
     this.showHover = showHover;
   }
 
   draw() {
+    push();
     if (this.showHover) {
-      push();
-
       if (!this.hover()) {
-        stroke("red");
-        strokeWeight(2);
+        stroke("#8a041f");
+        strokeWeight(1.5);
       } else {
         noStroke();
       }
-      fill(50);
-      rect(this.x - this.size - 70, this.y, 20);
-      rect(this.x + this.size + 70, this.y, 20);
-      pop();
     }
 
-    push();
     fill(this.fill);
     textAlign(CENTER, CENTER);
     textSize(this.size);

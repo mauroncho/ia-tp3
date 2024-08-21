@@ -1,12 +1,31 @@
+@font-face {
+  font-family: "slkscr";
+  src: url("assets/fonts/slkscr.ttf") format("truetype");
+  src: url("assets/fonts/slkscrb.ttf") format("truetype");
+  src: url("assets/fonts/slkscre.ttf") format("truetype");
+  src: url("assets/fonts/slkscreb.ttf") format("truetype");
+
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   padding: 0;
   margin: 0;
   background-color: #1b1b1b;
   color: whitesmoke;
+  font-size: 1.2em;
+  /* font-family: "slkscr"; */
+  font-family: "Montserrat";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #container {
   display: flex;
+  min-height: 100dvh;
   flex-direction: column;
   align-items: center;
   justify-content: center;

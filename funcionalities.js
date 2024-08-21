@@ -1,8 +1,8 @@
 function mousePressed() {
   if (gameScreen == 1) {
-    if (!hover(width / 2, height / 2 - 40, 145, 70)) {
+    if (!hover(width / 2, height / 2 - 110, 145, 70)) {
       gameScreen = 2;
-    } else if (!hover(width / 2, height / 2 + 30, 140, 30)) {
+    } else if (!hover(width / 2 - 5, height / 2 - 40, 140, 30)) {
       gameScreen = 4;
     }
   }
@@ -25,8 +25,8 @@ function isColliding(
   opponentHeight
 ) {
   return !(
-    player.x - player.width / 2 + 35 > opponentX + opponentWidth / 2 ||
-    player.x + player.width / 2 - 35 < opponentX - opponentWidth / 2 ||
+    player.x - player.width / 2 + 50 > opponentX + opponentWidth / 2 ||
+    player.x + player.width / 2 - 50 < opponentX - opponentWidth / 2 ||
     player.y - player.height / 2 + 60 > opponentY + opponentHeight / 2
   );
 }

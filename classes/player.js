@@ -1,5 +1,5 @@
 class Player {
-  constructor(idleSheet, runSheet, hurtSheet, deadSheet) {
+  constructor(idleSheet, runSheet, deadSheet) {
     this.x = 300;
     this.y = 474;
     this.width = 128;
@@ -11,7 +11,6 @@ class Player {
     this.animationData = {
       idle: { animation: idleSheet, frames: 4 },
       run: { animation: runSheet, frames: 7 },
-      hurt: { animation: hurtSheet, frames: 1 },
       dead: { animation: deadSheet, frames: 3 },
     };
     this.animationSpeed = 5;
@@ -25,6 +24,7 @@ class Player {
     if (!this.facingRight) {
       scale(-1, 1);
     }
+
     if (frameCount % this.animationSpeed == 0) {
       if (this.internalCounter < frames) {
         this.internalCounter++;
@@ -71,13 +71,20 @@ class Player {
   //metodos que manejan la vida
   receiveDamage() {
     this.life--;
-    this.state = "hurt";
-    if (this.life <= 0) {
-      this.state = "dead";
-      this.life = 3;
-      return true;
-    }
+    if (this.life <= 0) return true;
     return false;
+  }
+
+  //no me sale implementar la muerte del jugador
+  // deathAnimation() {
+  //   this.state = "dead";
+  //   this.vel = 0;
+  // }
+
+  gameRestart() {
+    this.life = 3;
+    this.vel = 5;
+    this.x = 300;
   }
 
   lifeTracker() {
@@ -86,8 +93,8 @@ class Player {
 
   //update engloba varios metodos que estan activos todo el tiempo
   update() {
-    this.move();
     this.draw();
+    this.move();
     this.lifeTracker();
   }
 }
