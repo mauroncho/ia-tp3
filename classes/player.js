@@ -81,10 +81,12 @@ class Player {
   //   this.vel = 0;
   // }
 
-  gameRestart() {
-    this.life = 3;
-    this.vel = 5;
+  restartPosition() {
     this.x = 300;
+  }
+
+  restartLife() {
+    this.life = 3;
   }
 
   lifeTracker() {
