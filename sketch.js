@@ -10,8 +10,11 @@ let diamondSheet;
 let fireSheet;
 //sonido
 let diamondScore;
+let fireDmg;
 let revMusic;
 let distMusic;
+let adventureMusic;
+let bossMusic;
 //variables del juego
 let gameScreen = 1;
 let score = 0;
@@ -31,9 +34,12 @@ function preload() {
   playerDead = loadImage("./assets/img/dead.png");
   diamondSheet = loadImage("./assets/img/diamond-yellow.png");
   fireSheet = loadImage("./assets/img/fire.png");
-  diamondScore = loadSound("./assets/audio/success.mp3");
+  diamondScore = loadSound("./assets/audio/diamond-score.mp3");
+  fireDmg = loadSound("./assets/audio/fire-dmg.mp3");
   revMusic = loadSound("./assets/audio/theme-rev.mp3");
   distMusic = loadSound("./assets/audio/theme-distortion.mp3");
+  adventureMusic = loadSound("./assets/audio/adventure.mp3");
+  bossMusic = loadSound("./assets/audio/boss.mp3");
 }
 
 function setup() {
@@ -41,9 +47,12 @@ function setup() {
   textFont(fontReg);
   rectMode(CENTER);
   player = new Player(playerIdle, playerRun, playerDead);
-  diamondScore.setVolume(0.1);
-  revMusic.setVolume(0.3);
-  distMusic.setVolume(0.3);
+  diamondScore.setVolume(0.05);
+  fireDmg.setVolume(0.19);
+  revMusic.setVolume(0.15);
+  distMusic.setVolume(0.15);
+  adventureMusic.setVolume(0.03);
+  bossMusic.setVolume(0.03);
 }
 
 function draw() {

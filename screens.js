@@ -79,10 +79,7 @@ function playScreen() {
   //dibujo de background y player
   bgImg();
   player.update();
-  push();
-  revMusic.play();
-  revMusic.playMode("untilDone");
-  pop();
+
   //logica para aparicion de diamentes/fuegos (cada x tiempo se agrega una instancia de clase al array correspondiente)
   if (frameCount % diamondSpawn == 0) {
     diamonds.push(
@@ -139,6 +136,7 @@ function playScreen() {
       )
     ) {
       fires.splice(i, 1);
+      fireDmg.play();
       if (player.receiveDamage()) {
         gameScreen = 3;
         player.restartPosition();
@@ -148,7 +146,22 @@ function playScreen() {
       fires.splice(i, 1);
     }
   }
-
+  console.log(diamondMaxVel);
+  //manejo sonoro
+  if (score < 200) {
+    adventureMusic.play();
+    adventureMusic.playMode("untilDone");
+  } else if (
+    (score > 200 && score < 350) ||
+    gameScreen == 3 ||
+    gameScreen == 5
+  ) {
+    adventureMusic.stop();
+    bossMusic.play();
+    bossMusic.playMode("untilDone");
+  } else {
+    bossMusic.stop();
+  }
   //incremento de dificultad
   if (score > 50 && score < 100) {
     diamondSpawn = 50;
@@ -157,26 +170,30 @@ function playScreen() {
     fireMinVel = 4;
   } else if (score > 100 && score < 150) {
     diamondSpawn = 40;
-    fireSpawn = 45;
+    fireSpawn = 40;
     diamondMinVel = 5;
     fireMinVel = 4;
-    push();
-    revMusic.stop();
-    distMusic.play();
-    distMusic.playMode("untilDone");
-    // distMusic.rate(10);
-    pop();
   } else if (score > 150 && score < 200) {
-    fireSpawn = 30;
-    fireMinVel = 6;
-    fireMaxVel = 8;
-  } else if (score > 200 && score < 300) {
+    fireSpawn = 20;
+    fireMinVel = 7;
+    fireMaxVel = 9;
+    // push();
+    // revMusic.onended(() => {
+    //   revMusic.stop();
+    //   distMusic.loop();
+    // });
+    // distMusic.playMode("untilDone");
+    // pop();
+  } else if (score > 200 && score < 250) {
     diamondSpawn = 25;
     diamondMaxVel = 7;
-    fireSpawn = 20;
-    fireMaxVel = 10;
-  } else if (score > 300) {
     fireSpawn = 10;
+    fireMinVel = 8;
+    fireMaxVel = 10;
+  } else if (score > 250 && score < 350) {
+    diamondSpawn = 20;
+    fireMaxVel = 11;
+    fireSpawn = 7;
   }
 
   //win condition
@@ -240,6 +257,7 @@ function creditsScreen() {
   player.update();
 }
 
+//PANTALLA GANASTE - gameScreen == 5
 function winScreen() {
   bgImg();
   const winText = new CustomText(width / 2, height / 2, "ganaste", 60, false);
