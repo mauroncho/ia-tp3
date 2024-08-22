@@ -8,11 +8,8 @@ Utilizamos la librería p5.js y trabajamos los conceptos de estado y programaci�
 
 ### Work in progress:
 
-- Ajustar dificultad
 - Sumar créditos del arte en readme.md
-- Agrgar favicon y nombre de página en Netlify
-- Trabajar el sonido y crear fx de fuego
-- Mejorar pantalla ganaste
+- Agrgar favicon y cambiar nombre de página en Netlify
 - Mejorar lógica del aumento de dificuldad
 - Gráficos del juego: mejorar cuadro en blanco del personaje al cambiar de animación
 - Mejorar detalles de la lógica: hover del menú principal, dibujo del background, colisiones entre personaje y elementos

@@ -55,6 +55,16 @@ function gameIndex() {
   creditsButton.update();
   bgImg();
   player.update();
+  //manejo sonoro
+  if (
+    adventureMusic.isPlaying() ||
+    bossMusic.isPlaying() ||
+    winMusic.isPlaying()
+  ) {
+    adventureMusic.stop();
+    bossMusic.stop();
+    winMusic.stop();
+  }
 }
 
 //PANTALLA JUEGO - gameScreen == 2
@@ -146,21 +156,14 @@ function playScreen() {
       fires.splice(i, 1);
     }
   }
-  console.log(diamondMaxVel);
   //manejo sonoro
   if (score < 200) {
     adventureMusic.play();
     adventureMusic.playMode("untilDone");
-  } else if (
-    (score > 200 && score < 350) ||
-    gameScreen == 3 ||
-    gameScreen == 5
-  ) {
+  } else if (score > 200 && score < 350) {
     adventureMusic.stop();
     bossMusic.play();
     bossMusic.playMode("untilDone");
-  } else {
-    bossMusic.stop();
   }
   //incremento de dificultad
   if (score > 50 && score < 100) {
@@ -177,13 +180,6 @@ function playScreen() {
     fireSpawn = 20;
     fireMinVel = 7;
     fireMaxVel = 9;
-    // push();
-    // revMusic.onended(() => {
-    //   revMusic.stop();
-    //   distMusic.loop();
-    // });
-    // distMusic.playMode("untilDone");
-    // pop();
   } else if (score > 200 && score < 250) {
     diamondSpawn = 25;
     diamondMaxVel = 7;
@@ -205,6 +201,11 @@ function playScreen() {
 
 //PANTALLA GAME OVER - gameScreen == 3
 function gameOverScreen() {
+  //manejo de sonido
+  if (bossMusic.isPlaying() || adventureMusic.isPlaying()) {
+    bossMusic.stop();
+    adventureMusic.stop();
+  }
   const playerScore = new CustomText(
     width / 2,
     height / 2 - 50,
@@ -259,8 +260,23 @@ function creditsScreen() {
 
 //PANTALLA GANASTE - gameScreen == 5
 function winScreen() {
+  //manejo de sonido
+  if (winMusic.currentTime() >= winMusic.duration() - 0.2) {
+    winMusic.stop();
+  } else {
+    bossMusic.stop();
+    adventureMusic.stop();
+    winMusic.play();
+    winMusic.playMode("untilDone");
+  }
   bgImg();
-  const winText = new CustomText(width / 2, height / 2, "ganaste", 60, false);
+  const winText = new CustomText(
+    width / 2,
+    height / 2 - 50,
+    "GANASTE!",
+    60,
+    false
+  );
   const pressEnter = new CustomText(
     width / 2,
     height / 2 + 100,
