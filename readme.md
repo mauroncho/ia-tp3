@@ -8,15 +8,14 @@ Utilizamos la librería p5.js y trabajamos los conceptos de estado y programaci�
 
 ### Work in progress:
 
-- Win condition: llegar a 350 puntos
-- Agregar pantalla de victoria
-- Mejorar lógica del aumento de dificuldad
 - Ajustar dificultad
+- Sumar créditos del arte en readme.md
+- Agrgar favicon y nombre de página en Netlify
+- Trabajar el sonido y crear fx de fuego
+- Mejorar pantalla ganaste
+- Mejorar lógica del aumento de dificuldad
 - Gráficos del juego: mejorar cuadro en blanco del personaje al cambiar de animación
 - Mejorar detalles de la lógica: hover del menú principal, dibujo del background, colisiones entre personaje y elementos
 - Implementar animación de muerte
-- Modificar title de HTML y nombre de página en Netlify
-- Agregar fuente display con nombre del juego
-- Sumar créditos del arte en readme.md
 
 ### Artistas que aportaron sus assets

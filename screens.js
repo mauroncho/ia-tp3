@@ -11,6 +11,22 @@ function gameIndex() {
   diamonds = [];
   fires = [];
   //textos de esta pantalla
+  // titulo
+  push();
+  let startColor = color("#d21a26");
+  let endColor = color("#f0d804");
+  for (let i = 0; i < 8; i++) {
+    let inter = map(i, 0, 8, 0, 1);
+    let c = lerpColor(startColor, endColor, inter);
+    fill(c);
+    noStroke();
+    textSize(100);
+    textAlign(CENTER, CENTER);
+    textFont(fontDisplay);
+    text("Agniel", width / 2 - 10, 80 + i);
+  }
+  pop();
+
   const playButton = new CustomText(
     width / 2,
     height / 2 - 115,
@@ -63,6 +79,10 @@ function playScreen() {
   //dibujo de background y player
   bgImg();
   player.update();
+  push();
+  revMusic.play();
+  revMusic.playMode("untilDone");
+  pop();
   //logica para aparicion de diamentes/fuegos (cada x tiempo se agrega una instancia de clase al array correspondiente)
   if (frameCount % diamondSpawn == 0) {
     diamonds.push(
@@ -101,6 +121,7 @@ function playScreen() {
     ) {
       diamonds.splice(i, 1);
       score += 5;
+      diamondScore.play();
     } else if (diamonds[i].floorCollision()) {
       diamonds.splice(i, 1);
     }
@@ -120,7 +141,8 @@ function playScreen() {
       fires.splice(i, 1);
       if (player.receiveDamage()) {
         gameScreen = 3;
-        player.gameRestart();
+        player.restartPosition();
+        player.restartLife();
       }
     } else if (fires[i].floorCollision()) {
       fires.splice(i, 1);
@@ -138,6 +160,12 @@ function playScreen() {
     fireSpawn = 45;
     diamondMinVel = 5;
     fireMinVel = 4;
+    push();
+    revMusic.stop();
+    distMusic.play();
+    distMusic.playMode("untilDone");
+    // distMusic.rate(10);
+    pop();
   } else if (score > 150 && score < 200) {
     fireSpawn = 30;
     fireMinVel = 6;
@@ -149,6 +177,12 @@ function playScreen() {
     fireMaxVel = 10;
   } else if (score > 300) {
     fireSpawn = 10;
+  }
+
+  //win condition
+  if (score >= 350) {
+    gameScreen = 5;
+    player.restartLife();
   }
 }
 
@@ -203,5 +237,21 @@ function creditsScreen() {
   );
   pressEnter.update();
   credits.update();
+  player.update();
+}
+
+function winScreen() {
+  bgImg();
+  const winText = new CustomText(width / 2, height / 2, "ganaste", 60, false);
+  const pressEnter = new CustomText(
+    width / 2,
+    height / 2 + 100,
+    "pulsá ENTER para continuar",
+    20,
+    false,
+    200
+  );
+  pressEnter.update();
+  winText.update();
   player.update();
 }
