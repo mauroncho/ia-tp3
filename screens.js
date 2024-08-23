@@ -26,15 +26,10 @@ function gameIndex() {
     text("Agniel", width / 2 - 10, 80 + i);
   }
   pop();
-
-  const playButton = new CustomText(
-    width / 2,
-    height / 2 - 115,
-    "jugar",
-    65,
-    true
-  );
-  const creditsButton = new CustomText(
+  //boton jugar
+  playButton = new CustomText(width / 2, height / 2 - 115, "jugar", 65, true);
+  //boton creditos
+  creditsButton = new CustomText(
     width / 2 - 5,
     height / 2 - 45,
     "créditos",
@@ -42,6 +37,7 @@ function gameIndex() {
     true,
     200
   );
+  //texto instructivo
   const howToPlay = new CustomText(
     width / 2,
     height / 2 + 65,
@@ -50,12 +46,13 @@ function gameIndex() {
     false,
     180
   );
+  //llamada a clases para visualizar textos, mostrar el fondo y el personaje
   howToPlay.update();
   playButton.update();
   creditsButton.update();
   bgImg();
   player.update();
-  //manejo sonoro
+  //manejo sonoro, frena todos los posibles sonidos
   if (
     adventureMusic.isPlaying() ||
     bossMusic.isPlaying() ||
@@ -84,9 +81,9 @@ function playScreen() {
     30,
     false
   );
+  //dibujo de textos, background y player
   scoreText.update();
   lifeText.update();
-  //dibujo de background y player
   bgImg();
   player.update();
 
@@ -165,32 +162,8 @@ function playScreen() {
     bossMusic.play();
     bossMusic.playMode("untilDone");
   }
-  //incremento de dificultad
-  if (score > 50 && score < 100) {
-    diamondSpawn = 50;
-    fireSpawn = 60;
-    diamondMinVel = 4;
-    fireMinVel = 4;
-  } else if (score > 100 && score < 150) {
-    diamondSpawn = 40;
-    fireSpawn = 40;
-    diamondMinVel = 5;
-    fireMinVel = 4;
-  } else if (score > 150 && score < 200) {
-    fireSpawn = 20;
-    fireMinVel = 7;
-    fireMaxVel = 9;
-  } else if (score > 200 && score < 250) {
-    diamondSpawn = 25;
-    diamondMaxVel = 7;
-    fireSpawn = 10;
-    fireMinVel = 8;
-    fireMaxVel = 10;
-  } else if (score > 250 && score < 350) {
-    diamondSpawn = 20;
-    fireMaxVel = 11;
-    fireSpawn = 7;
-  }
+  //incremento de dificultad (ver funcionalities)
+  increaseDifficulty();
 
   //win condition
   if (score >= 350) {
@@ -201,11 +174,12 @@ function playScreen() {
 
 //PANTALLA GAME OVER - gameScreen == 3
 function gameOverScreen() {
-  //manejo de sonido
+  //manejo de sonido, frena los tracks de fondo
   if (bossMusic.isPlaying() || adventureMusic.isPlaying()) {
     bossMusic.stop();
     adventureMusic.stop();
   }
+  //instancia de texto mostrar el score y game over
   const playerScore = new CustomText(
     width / 2,
     height / 2 - 50,
@@ -220,15 +194,7 @@ function gameOverScreen() {
     60,
     false
   );
-  const pressEnter = new CustomText(
-    width / 2,
-    height / 2 + 100,
-    "pulsá ENTER para continuar",
-    20,
-    false,
-    200
-  );
-
+  //dibujo de textos y background
   gameOverText.update();
   pressEnter.update();
   playerScore.update();
@@ -244,14 +210,6 @@ function creditsScreen() {
     "desarrollado por: \n yanina longo \n mauro giachero ",
     45,
     false
-  );
-  const pressEnter = new CustomText(
-    width / 2,
-    height / 2 + 110,
-    "pulsá ENTER \n para volver al menu principal",
-    20,
-    false,
-    200
   );
   pressEnter.update();
   credits.update();
@@ -276,14 +234,6 @@ function winScreen() {
     "GANASTE!",
     60,
     false
-  );
-  const pressEnter = new CustomText(
-    width / 2,
-    height / 2 + 100,
-    "pulsá ENTER para continuar",
-    20,
-    false,
-    200
   );
   pressEnter.update();
   winText.update();
