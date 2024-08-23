@@ -23,7 +23,12 @@ let diamondMaxVel = 6;
 let fireSpawn = 75;
 let fireMinVel = 3;
 let fireMaxVel = 3;
+//variables globales para textos
+let pressEnter;
+let playButton;
+let creditsButton;
 
+//carga de assets
 function preload() {
   fontDisplay = loadFont("./assets/fonts/chp-fire.ttf");
   fontReg = loadFont("./assets/fonts/ChakraPetch-Regular.ttf");
@@ -44,16 +49,28 @@ function setup() {
   createCanvas(600, 600, game);
   textFont(fontReg);
   rectMode(CENTER);
+  //instancia de clase player con sheets de animacion
   player = new Player(playerIdle, playerRun, playerDead);
+  //instacia de clase texto para press enter
+  pressEnter = new CustomText(
+    width / 2,
+    height / 2 + 105,
+    "pulsá ENTER \n para volver al menú principal",
+    20,
+    false,
+    200
+  );
+  //volumenes de los sonidos
   diamondScore.setVolume(0.05);
   fireDmg.setVolume(0.19);
-  adventureMusic.setVolume(0.03);
-  bossMusic.setVolume(0.03);
-  winMusic.setVolume(0.05);
+  adventureMusic.setVolume(0.04);
+  bossMusic.setVolume(0.05);
+  winMusic.setVolume(0.06);
 }
 
 function draw() {
   background("#2b425d");
+  //cambio de estado segun valor de variable gameScreen
   if (gameScreen == 1) {
     gameIndex();
   } else if (gameScreen == 2) {
