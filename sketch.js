@@ -46,7 +46,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(600, 600, game);
+  createCanvas(600, 600);
   textFont(fontReg);
   rectMode(CENTER);
   //instancia de clase player con sheets de animacion

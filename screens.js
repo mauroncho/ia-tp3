@@ -41,7 +41,7 @@ function gameIndex() {
   const howToPlay = new CustomText(
     width / 2,
     height / 2 + 65,
-    "movete con las flechas del teclado \n los fuegos quitan vida \n los diamantes suman puntos \n sin vidas perdés \n ganás al llegar a 350 puntos ",
+    "movete con las flechas del teclado \n los fuegos quitan vida \n los diamantes suman puntos \n tenés 3 vidas \n ganás al llegar a 350 puntos ",
     19,
     false,
     180
