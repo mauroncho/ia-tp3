@@ -50,8 +50,8 @@ function gameIndex() {
   howToPlay.update();
   playButton.update();
   creditsButton.update();
-  bgImg();
   player.update();
+  bgImg();
   //manejo sonoro, frena todos los posibles sonidos
   if (
     adventureMusic.isPlaying() ||
@@ -71,14 +71,14 @@ function playScreen() {
     width * 0.17,
     height * 0.06,
     `score: ${score}`,
-    30,
+    35,
     false
   );
   const lifeText = new CustomText(
     width * 0.8,
     height * 0.06,
     `vidas: ${player.lifeTracker()}`,
-    30,
+    35,
     false
   );
   //dibujo de textos, background y player
@@ -144,6 +144,7 @@ function playScreen() {
     ) {
       fires.splice(i, 1);
       fireDmg.play();
+      playerHurt.play();
       if (player.receiveDamage()) {
         gameScreen = 3;
         player.restartPosition();
@@ -152,6 +153,14 @@ function playScreen() {
     } else if (fires[i].floorCollision()) {
       fires.splice(i, 1);
     }
+  }
+  //incremento de dificultad (ver funcionalities)
+  increaseDifficulty();
+
+  //win condition
+  if (score >= 350) {
+    gameScreen = 5;
+    player.restartLife();
   }
   //manejo sonoro
   if (score < 200) {
@@ -162,23 +171,10 @@ function playScreen() {
     bossMusic.play();
     bossMusic.playMode("untilDone");
   }
-  //incremento de dificultad (ver funcionalities)
-  increaseDifficulty();
-
-  //win condition
-  if (score >= 350) {
-    gameScreen = 5;
-    player.restartLife();
-  }
 }
 
 //PANTALLA GAME OVER - gameScreen == 3
 function gameOverScreen() {
-  //manejo de sonido, frena los tracks de fondo
-  if (bossMusic.isPlaying() || adventureMusic.isPlaying()) {
-    bossMusic.stop();
-    adventureMusic.stop();
-  }
   //instancia de texto mostrar el score y game over
   const playerScore = new CustomText(
     width / 2,
@@ -199,11 +195,15 @@ function gameOverScreen() {
   pressEnter.update();
   playerScore.update();
   bgImg();
+  //manejo de sonido, frena los tracks de fondo
+  if (bossMusic.isPlaying() || adventureMusic.isPlaying()) {
+    bossMusic.stop();
+    adventureMusic.stop();
+  }
 }
 
 //PANTALLA CREDITOS - gameScreen == 4
 function creditsScreen() {
-  bgImg();
   const credits = new CustomText(
     width / 2,
     height / 2 - 45,
@@ -214,20 +214,11 @@ function creditsScreen() {
   pressEnter.update();
   credits.update();
   player.update();
+  bgImg();
 }
 
 //PANTALLA GANASTE - gameScreen == 5
 function winScreen() {
-  //manejo de sonido
-  if (winMusic.currentTime() >= winMusic.duration() - 0.2) {
-    winMusic.stop();
-  } else {
-    bossMusic.stop();
-    adventureMusic.stop();
-    winMusic.play();
-    winMusic.playMode("untilDone");
-  }
-  bgImg();
   const winText = new CustomText(
     width / 2,
     height / 2 - 50,
@@ -238,4 +229,14 @@ function winScreen() {
   pressEnter.update();
   winText.update();
   player.update();
+  bgImg();
+  //manejo de sonido
+  if (winMusic.currentTime() >= winMusic.duration() - 0.2) {
+    winMusic.stop();
+  } else {
+    bossMusic.stop();
+    adventureMusic.stop();
+    winMusic.play();
+    winMusic.playMode("untilDone");
+  }
 }

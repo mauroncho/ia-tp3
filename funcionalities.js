@@ -72,6 +72,6 @@ function increaseDifficulty() {
   } else if (score > 250 && score < 350) {
     diamondSpawn = 20;
     fireMaxVel = 11;
-    fireSpawn = 8;
+    fireSpawn = 7;
   }
 }

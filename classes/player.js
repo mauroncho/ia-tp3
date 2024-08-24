@@ -42,9 +42,7 @@ class Player {
       0 + this.width * this.internalCounter,
       0,
       this.height,
-      this.width,
-      this.animationSpeed,
-      frames
+      this.width
     );
     pop();
   }
