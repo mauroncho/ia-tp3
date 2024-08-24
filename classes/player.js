@@ -1,5 +1,5 @@
 class Player {
-  constructor(idleSheet, runSheet, deadSheet) {
+  constructor(idleSheet, runSheet) {
     this.x = 300;
     this.y = 474;
     this.width = 128;
@@ -11,7 +11,6 @@ class Player {
     this.animationData = {
       idle: { animation: idleSheet, frames: 4 },
       run: { animation: runSheet, frames: 7 },
-      dead: { animation: deadSheet, frames: 3 },
     };
     this.animationSpeed = 5;
     this.internalCounter = 0;
@@ -72,12 +71,6 @@ class Player {
     if (this.life <= 0) return true;
     return false;
   }
-
-  //no me sale implementar la muerte del jugador
-  // deathAnimation() {
-  //   this.state = "dead";
-  //   this.vel = 0;
-  // }
 
   restartPosition() {
     this.x = 300;

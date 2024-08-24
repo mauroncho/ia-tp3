@@ -5,7 +5,6 @@ let fontReg;
 let bg;
 let playerRun;
 let playerIdle;
-let playerDead;
 let diamondSheet;
 let fireSheet;
 //sonido
@@ -36,7 +35,6 @@ function preload() {
   bg = loadImage("./assets/img/bg.png");
   playerIdle = loadImage("./assets/img/idle.png");
   playerRun = loadImage("./assets/img/run.png");
-  playerDead = loadImage("./assets/img/dead.png");
   diamondSheet = loadImage("./assets/img/diamond-yellow.png");
   fireSheet = loadImage("./assets/img/fire.png");
   fireDmg = loadSound("./assets/audio/fire-dmg.mp3");
@@ -52,7 +50,7 @@ function setup() {
   textFont(fontReg);
   rectMode(CENTER);
   //instancia de clase player con sheets de animacion
-  player = new Player(playerIdle, playerRun, playerDead);
+  player = new Player(playerIdle, playerRun);
   //instacia de clase texto para press enter
   pressEnter = new CustomText(
     width / 2,

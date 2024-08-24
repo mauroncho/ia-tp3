@@ -187,7 +187,7 @@ function gameOverScreen() {
     width / 2,
     height / 2,
     "game over",
-    60,
+    70,
     false
   );
   //dibujo de textos y background
@@ -223,7 +223,7 @@ function winScreen() {
     width / 2,
     height / 2 - 50,
     "GANASTE!",
-    60,
+    70,
     false
   );
   pressEnter.update();
