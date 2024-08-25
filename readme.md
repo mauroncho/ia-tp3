@@ -4,15 +4,17 @@ Videojuego desarrollado por Yanina Longo y Mauro Giachero para la materia Inform
 
 Utilizamos la librería p5.js y trabajamos los conceptos de estado y programación orientada a objetos (OOP).
 
+![Agniel demo]([https://github.com/tu-usuario/tu-repo/raw/main/ruta/al/gif.gif](https://github.com/mauroncho/ia-tp3/blob/readme-assets/action-600.gif)
+
 #### 🕹 **Jugalo acá:** https://agniel.netlify.app/
 
-### 🐱‍🏍 Work in progress:
+### 🐱‍🏍 Primera versión del juego terminada, próximas metas:
 
 - Mejorar rendimiento de carga
-- Buscar bugs y detalles
 - Gráficos del juego: mejorar cuadro en blanco del personaje al cambiar de animación
 - Mejorar detalles de la lógica: dibujo del background, colisiones entre personaje y elementos
 - Implementar animación de muerte
+- Crear niveles y power-ups
 
 ### 🎨 Artistas que aportaron sus assets
 
